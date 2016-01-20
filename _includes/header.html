@@ -1,27 +1,191 @@
-<header class="site-header">
+<header class="header navbar navbar-default nav-down">
 
-  <div class="wrapper">
+  <!-- UTILITY BAR. DESKTOP ONLY -->
+  <div class="utility-bar hidden-xs hidden-sm">
+    <div class="container">
+      <ul class="navbar-left">
+        <li><a href="tel:800-555-5555">800.555.5555</a></li>
+        <li><a href="#">Live Chat</a></li>
+        <li><a href="#">Store Locator</a></li>
+        <li><a href="#">Quick Order</a></li>
+      </ul>
+      <ul class="navbar-right">
+        <li><a href="#">Customer Name</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="clearfix"></div>
 
-    <a class="site-title" href="{{ site.baseurl }}/">{{ site.title }}</a>
 
-    <nav class="site-nav">
-      <a href="#" class="menu-icon">
-        <svg viewBox="0 0 18 15">
-          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
-          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
-          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
-        </svg>
-      </a>
+  <!-- THIS IS THE REST OF THE HEADER SANS THE UTILITY BAR -->
+  <div class="container">
+    <div class="row">
 
-      <div class="trigger">
-        {% for my_page in site.pages %}
-          {% if my_page.title %}
-          <a class="page-link" href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.title }}</a>
-          {% endif %}
-        {% endfor %}
+      <!-- HAMBURGER... ONLY VISIBLE ON MOBILE. OPENS OFF-CANVAS MENU -->
+      <div class="col-xs-3 visible-xs-block">
+      <a class="hamburgerIcon-m" href="#">
+          <div class="nav-icon nav-icon-mobile">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </a>
       </div>
-    </nav>
 
+      <!-- CONTAINS HAMBURGER (TABLET UP ONLY), LOGO, PRODUCTS BUTTON (TABLET UP ONLY) -->
+      <div class="col-md-3 col-sm-12 col-xs-6 logo-row">
+        <div class="row">
+          <a class="hamburgerIcon hidden-xs" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <div class="nav-icon nav-icon-tabletUp">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </a>    
+
+          <h1 class="text-hide">REXEL</h1>  
+        </div>
+        <div class="row prodbtn-row hidden-xs">
+          <div class="col-sm-3 col-md-12 kp">
+            <a href="#" class="btn btn-default btn-block products-btn">Products</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTAINS TOP LEVEL LINKS AND SEARCH BAR FOR DESKTOP -->
+      <div class="col-xs-7 search-row hidden-xs">
+        <div class="row hidden-xs hidden-sm">
+          <div class="col-xs-12">
+            <ul class="logobar-nav">
+              <li><a href="#">About</a></li>
+              <li><a href="#">Industries</a></li>
+              <li><a href="#">Services</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <form>
+              <div class="button-group row" role="group" aria-label="search">
+                <div class="col-xs-2 kpr">
+                    <select class="selectpicker form-control" title="Category">
+                      <option>Installation</option>
+                      <option>Category 1</option>
+                      <option>Category 2</option>
+                      <option>Category 3</option>
+                      <option>Category 4</option>
+                      <option>Category 5</option>
+                      <option>Category 6</option>
+                      <option>Category 7</option>
+                      <option>Category 8</option>
+                      <option>Category 9</option>
+                    </select> 
+                </div>
+                
+                  <div class="col-xs-10 kp">
+                    <input type="search" placeholder="enter keywords..." class="form-control" />
+                    <button type="submit" class="btn search-submit-btn"><i class="material-icons">search</i></button>
+                  </div>
+                  
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- HEADER ICONS -->
+      <div class="col-xs-3 col-sm-2 pull-right icons-wrapper">
+        <ul class="icons-row">
+          
+          <!-- NOTIFICATIONS ICON. TABLET-UP -->
+          <li class="notifictaions-target hidden-xs">
+            <a 
+              tabindex="0" 
+              data-container=".notifictaions-target" 
+              data-trigger="focus" 
+              data-toggle="popover" 
+              data-placement="bottom" 
+              data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+              <i class="material-icons">notifications</i>
+            </a>
+          </li>
+          
+          <!-- ACCOUNT ICON TABLET-UP -->
+          <li class="account-target hidden-xs">
+            <a 
+              tabindex="0" 
+              data-container=".account-target" 
+              data-trigger="focus" 
+              data-toggle="popover" 
+              data-placement="bottom" 
+              data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+              <i class="material-icons">person</i>
+            </a>
+          </li>
+          
+          <!-- SEARCH ICON. MOBILE ONLY (EXCEPT LANDING PAGE) -->
+          <li class="search-target visible-xs-inline-block">
+            <a 
+              data-toggle="collapse" 
+              href="#searchCollapse" 
+              aria-expanded="false" 
+              aria-controls="searchCollapse">
+              <i class="material-icons">search</i>
+            </a>
+          </li>
+
+          <!-- CART ICON. VISIBLE AT ALL TIMES -->
+          <li class="cart-target">
+            <a 
+              tabindex="0" 
+              data-container=".cart-target" 
+              data-trigger="focus" 
+              data-toggle="popover" 
+              data-placement="bottom" 
+              data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+              <i class="material-icons">shopping_cart</i>
+            </a>
+          </li>
+        
+        </ul>
+      </div>
+      <!-- END ICONS -->
+
+    </div>
+  </div>
+  <!-- END HEADER INSIDES -->
+
+  <!-- SEARCH DROPDOWN FOR MOBILE -->
+  <div class="collapse" id="searchCollapse">
+    <div class="well row">
+      <div class="col-xs-12 search-row">
+        <input type="search" placeholder="enter keywords..." class="form-control" />
+        <button type="submit" class="btn search-submit-btn"><i class="material-icons">search</i></button>
+      </div>
+    </div>
   </div>
 
+  <!-- PRODUCTS DROPDOWN FOR TABLET-UP -->
+  <div class="collapse" id="collapseExample">
+    <div class="well">
+      <div class="row">
+        <div class="container">
+          <div class="col-xs-12">
+            <h2>Style this menu as you see fit</h2>
+            <ul>
+              <li>product</li>
+              <li>product</li>
+              <li>product</li>
+              <li>product</li>
+              <li>product</li>
+            </ul>
+          </div>
+        </div>  
+      </div>
+    </div>
+  </div>
+  
 </header>
+<!-- END HEADER -->
