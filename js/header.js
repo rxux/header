@@ -1,18 +1,37 @@
 $(document).ready(function(){
 
   // TABLET DROPDOWN HAMBURGER
-  $('.nav-icon-tabletUp').click(function(){
+  $(document).on('click', '.nav-icon-tabletUp', function(){
+    $(this).toggleClass('open');
+  });
+  $(document).on('click', '.nav-icon-mobile', function(){
     $(this).toggleClass('open');
   });
 
-  $('.nav-icon-mobile').click(function(){
-    $(this).toggleClass('open');
+  $(document).on('click', '.search-target', function() {
+    $('.rx-animated-header').css({'overflow': 'visible'});
+    if (topZero <= navbarHeight) {
+      if ($(this).hasClass('search-collapsed')) {  
+        $('.header-spacer').css({height: navbarHeight + searchBarHeight});
+        $(this).removeClass('search-collapsed');
+      } else {
+        $('.header-spacer').css({height: navbarHeight});
+        $(this).addClass('search-collapsed');
+      }
+      if (didScroll = true) {
+
+      }
+    }
   });
 
   // SET VAR FOR VIEWPORT WIDTH
   var _vp = $(window).width();
   $(window).resize(function() {
     var _vp = $(window).width();
+    var navbarHeight = $('header').outerHeight();
+    $('#searchCollapse').collapse('hide');
+    $('.header-spacer').css({'height': navbarHeight});
+    $('.search-target').addClass('search-collapsed');
   });
 
   // HERE WE START THE HEADER-HIDE FOR MOBILE
@@ -20,6 +39,10 @@ $(document).ready(function(){
   var lastScrollTop = 0;
   var delta = 5;
   var navbarHeight = $('header').outerHeight();
+  var searchBarHeight = $('#searchCollapse').outerHeight();
+  $('#searchCollapse').collapse('hide');
+  $('.header-spacer').css({height: navbarHeight});
+
 
   $(window).scroll(function(){
     var _vp = $(window).width();
@@ -33,6 +56,9 @@ $(document).ready(function(){
         hasScrolled();
         didScroll = false;
     }
+
+    topZero = $(window).scrollTop();
+
   }, 250);
 
   function hasScrolled() {
@@ -41,15 +67,29 @@ $(document).ready(function(){
     if(Math.abs(lastScrollTop - st) <= delta) {
       return;
     }
-    // If they scrolled down and are past the navbar, add class .nav-up.
-    // This is necessary so you never see what is "behind" the navbar.
-    if (st > lastScrollTop && st > navbarHeight){
-      // Scroll Down
-      $('header').removeClass('nav-down').addClass('nav-up');
-    } else {
-      // Scroll Up
-      if(st + $(window).height() < $(document).height()) {
-        $('header').removeClass('nav-up').addClass('nav-down');
+
+    if (!$('.search-input').is(':focus')) {
+      // If they scrolled down and are past the navbar, add class .nav-up.
+      // This is necessary so you never see what is "behind" the navbar.
+      if (st > lastScrollTop && st > navbarHeight){
+        // Scroll Down
+        $('header').removeClass('nav-down').addClass('nav-up');
+        // This collapses the search bar if it's shown
+        if ($('#searchCollapse').hasClass('in')) {
+          $('#searchCollapse').collapse('hide');
+          $('.header-spacer').css({'height': navbarHeight});
+          $('.search-target').addClass('search-collapsed');
+        }
+      } else {
+        // Scroll Up
+        if(st + $(window).height() < $(document).height()) {
+          $('header').removeClass('nav-up').addClass('nav-down');
+          if ($('#searchCollapse').hasClass('in')) {
+            $('#searchCollapse').collapse('hide');
+            $('.header-spacer').css({'height': navbarHeight});
+            $('.search-target').addClass('search-collapsed');
+          }
+        }
       }
     }
     lastScrollTop = st;
@@ -66,11 +106,11 @@ $(function(){
       var scroll = getCurrentScroll();
         if ( scroll >= shrinkHeader ) {
             if (_vp > 768) {
-              $('.header').addClass('shrink');
+              $('.rx-animated-header').addClass('shrink');
             }  
           }
           else {
-              $('.header').removeClass('shrink');
+              $('.rx-animated-header').removeClass('shrink');
           }
     });
 
@@ -79,10 +119,6 @@ $(function(){
         }
     });
   
-
-// ENABLE BOOTSTRAP SELECT
-$('.selectpicker').selectpicker();
-
 // ENABLE BOOTSTRAP POPOVER FOR HEADER ICONS 
 $(function () {
   $('[data-toggle="popover"]').popover();
